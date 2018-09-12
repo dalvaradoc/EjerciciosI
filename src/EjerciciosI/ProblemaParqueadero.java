@@ -6,8 +6,12 @@ package EjerciciosI;
  */
 
 /**
- *
- * @author Alejandro
+ * Esta clase contiene el campo donde se crean las secciones de parqueadero, el 
+ * robot parqueador y los carros, es la clase que prueba el funcionamiento de 
+ * las demas (en el caso del parqueadero).
+ * @author Alejandro Alvarado
+ * @since 09/09/2018
+ * @version 1.0
  */
 
 import becker.robots.*;
@@ -69,8 +73,6 @@ public class ProblemaParqueadero {
     }    
     
     public void solucionarProblema (){
-        
-        System.out.println(reloj.millis()/1000);
         
         for(int i = 0; i < 6; i++){
             this.robot.IngresarVehiculo(reloj.millis());

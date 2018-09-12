@@ -11,7 +11,11 @@ import java.awt.Color;
 
 /**
  *
- * @author Alejandro
+ * Esta clase es una extension de la clase Thing (becker.robots.Thing). Tiene un
+ * atributo String el cual sirve para identificar el objeto.
+ * @author Alejandro Alvarado
+ * @since 09/09/2018
+ * @version 1.0
  */
 public class Carro extends becker.robots.Thing {
     

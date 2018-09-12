@@ -14,7 +14,13 @@ import java.util.TimeZone;
 
 /**
  *
- * @author Alejandro
+ * Esta clase es la que contiene los objetos carros, los tiempos de entrada a 
+ * la seccion, la cantidad de carros que hay en la seccion y un numero el cual
+ * indica que seccion es, además de que es la que contiene la informacion de 
+ * las ganancias que se consiguen en el dia laboral.
+ * @author Alejandro Alvarado
+ * @since 09/09/2018
+ * @version 1.0
  */
 public class Seccion {
     private Carro carros[];

@@ -7,8 +7,13 @@ package EjerciciosI;
 
 /**
  *
- * @author Alejandro
- 
+ * Esta clase es una extensión de la clase Robot (becker.robots.Robot). Contiene
+ * los metodos para moverse, para recoger carros y sacar carros además de que 
+ * recive información de la clase Seccion para tener información de los carros 
+ * que hay en las secciones.
+ * @author Alejandro Alvarado
+ * @since 09/09/2018
+ * @version 1.0
  * 
  * 
  **/
