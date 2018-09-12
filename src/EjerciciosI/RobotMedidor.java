@@ -8,6 +8,7 @@ package EjerciciosI;
 import becker.robots.City;
 import becker.robots.Direction;
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  *
@@ -31,11 +32,13 @@ public class RobotMedidor extends becker.robots.Robot {
         return false;
     }
     
-    public void moverPorElArea (){        
+    public void moverPorElArea (){
         boolean flag = true;
         while (flag){
             Posicion posicion = new Posicion(this.getAvenue(), this.getStreet());
-            posiciones.add(posicion);
+            if (!buscarPosicion(posiciones, posicion)){
+                posiciones.add(posicion);
+            }
             if (this.canPickThing()){
                 flag = false;
                 return;
@@ -83,52 +86,53 @@ public class RobotMedidor extends becker.robots.Robot {
     }
     
     public int maximoX(ArrayList<Posicion> pos) {
-        int max = -1234;
-        for (int i = 1; i < pos.size(); i++){
-            if (pos.get(i).getX() != 1234 && pos.get(i).getX() > max){
-                max = pos.get(i).getX();
-            }
-        }
-        return max;
+        return pos.get(pos.size()-1).getX();
     }  
     
     public int minimoX(ArrayList<Posicion> pos) {
-        int min = pos.get(0).getX();
-        for (int i = 1; i < pos.size(); i++){
-            if (pos.get(i).getX() < min){
-                min = pos.get(i).getX();
+        return pos.get(0).getX();
+    }
+    
+    public void sortPosiciones (ArrayList<Posicion> posL){
+        for (int i = 0; i < posL.size()-1; i++){
+            for (int j = i+1; j < posL.size();j++){
+                if (posL.get(i).getX() > posL.get(j).getX()){
+                    Posicion temp = posL.get(j);
+                    posL.set(j, posL.get(i));
+                    posL.set(i, temp);
+                }
             }
         }
-        return min;
-    }   
+        for (int i = 0; i < posL.size()-1; i++){
+            for (int j = i+1; j < posL.size();j++){
+                if (posL.get(i).getX() == posL.get(j).getX()){
+                    if (posL.get(i).getY() > posL.get(j).getY()){
+                        Posicion temp = posL.get(j);
+                        posL.set(j, posL.get(i));
+                        posL.set(i, temp);
+                    }
+                }
+            }
+        }
+    }
     
     public int calcularArea (){
         int area = 0;
+        sortPosiciones(posiciones);
         int maxX = maximoX(posiciones);
         int minX = minimoX(posiciones);
-        for (int i = 0; i < posiciones.size() - 1; i++){
-            if (!posiciones.get(i).equals(Posicion.vacio) && posiciones.get(i).getX() != maxX && posiciones.get(i).getX() != minX){
-                for (int j = i+1; j < posiciones.size(); j++){
-                    if (!posiciones.get(j).equals(Posicion.vacio)){
-                        if (posiciones.get(i).getX() == posiciones.get(j).getX()){
-                            if (j < posiciones.size()-1){
-                                while (posiciones.get(j).getX() == posiciones.get(j+1).getX() && Math.abs(posiciones.get(j).getY() - posiciones.get(j+1).getY()) == 1){
-                                    posiciones.set(j, Posicion.vacio);
-                                    if (j < posiciones.size()){
-                                        j++;
-                                    }
-                                }
-                            }
-                            int diferencia = Math.abs(posiciones.get(i).getY() - posiciones.get(j).getY());
-                            if (diferencia == 1){
-                                posiciones.set(i, Posicion.vacio);
-                            } else {
-                                area += diferencia - 1;
-                                posiciones.set(i, Posicion.vacio);
-                                posiciones.set(j, Posicion.vacio);
-                            }
-                            j = posiciones.size();
-                        }
+        
+        for (int i = 0; i < posiciones.size()-1; i++){
+            Posicion pos1 = posiciones.get(i);
+            Posicion pos2 = posiciones.get(i+1);
+            
+            if (!pos1.equals(Posicion.vacio) && !pos2.equals(Posicion.vacio) && pos1.getX() != maxX && pos1.getX() != minX) {
+                if (pos1.getX() == pos2.getX()){
+                    int diferencia = pos2.getY() - pos1.getY();
+                    if (diferencia != 1){
+                        area += diferencia - 1;
+                        posiciones.set(i, Posicion.vacio);
+                        posiciones.set(i+1, Posicion.vacio);
                     }
                 }
             }

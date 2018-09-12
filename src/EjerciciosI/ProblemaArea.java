@@ -23,9 +23,9 @@ public class ProblemaArea {
 
     public ProblemaArea() {
         ciudad = new City(12, 15);
-        area = new AreaA(ciudad, 1);
-        robot = new RobotMedidor(ciudad, 10, 4, Direction.WEST);
-        meta = new Thing(ciudad, 10, 5);
+        area = new AreaA(ciudad, 0);
+        robot = new RobotMedidor(ciudad, 3, 1, Direction.WEST);
+        meta = new Thing(ciudad, 4, 2);
     }
     
     public void solucionarProblema (){
