@@ -27,8 +27,22 @@ import java.time.Clock;
 
 public class RobotParqueador extends becker.robots.Robot {
     
+    
     private Seccion secciones[];
 
+    /**
+     * 
+     * El conscructor es el mismo que el de la clase que extiende, pero
+     * adicional a esto se asignan las secciones, con las cuales el robot
+     * mantiene la informacion de las mismas.
+     * @param city
+     * @param i
+     * @param i1
+     * @param drctn
+     * @param s1
+     * @param s2
+     * @param s3
+     */
     public RobotParqueador(City city, int i, int i1, Direction drctn, Seccion s1, Seccion s2, Seccion s3) {
         super(city, i, i1, drctn);
         
@@ -38,30 +52,49 @@ public class RobotParqueador extends becker.robots.Robot {
         secciones[2] = s3;
     }
     
+    /**
+     * Mueve al robot n veces hacia el frente
+     * @param n
+     */
     public void mover (int n){
         for (int i = 0; i < n; i++){
             this.move();
         }
     }
         
+    /**
+     * Gira el robot n veces hacia la izquierda.
+     * @param n
+     */
     public void rot (int n){
         for (int i = 0; i < n; i++){
             this.turnLeft();
         }
     }
     
+    /**
+     * Gira el robot hasta que este en la direccion especificada.
+     * @param dir
+     */
     public void rotUntilDir (Direction dir){
         while (this.getDirection() != dir){
             this.rot(1);
         }
     }
     
+    /**
+     * Mueve el robot hacia el frente hasta que este encima de un Thing.
+     */
     public void moveUntilThing (){
         while (!this.canPickThing()){
             this.mover(1);
         }
     }
     
+    /**
+     * Methodo que determina cual seccion tiene menos carros.
+     * @return 
+     */
     private Seccion getminSeccion() {
         Seccion minSec = secciones[0];
         for (int i = 1; i < 3; i++){
@@ -72,6 +105,12 @@ public class RobotParqueador extends becker.robots.Robot {
         return minSec;
     }
     
+    /**
+     * Methodo que mueve al robot para que pueda ingresar los carros en las
+     * secciones, además de modificar la información de las secciones.
+     * @param tiempo0
+     * @return
+     */
     public boolean IngresarVehiculo (long tiempo0) {
         //Mirar cual seccion es la que tiene menor cantidad de carros
         Seccion sec = getminSeccion();
@@ -97,6 +136,15 @@ public class RobotParqueador extends becker.robots.Robot {
         
     }
     
+    /**
+     * Metodo que mueve al robot para que saque el vehiculo el cual se
+     * especifica por medio de la placa, además de modificar la información
+     * de la seccion.
+     * @param placa
+     * @param sec
+     * @param tiempoF
+     * @return
+     */
     public boolean sacarVehiculo (String placa, Seccion sec, long tiempoF){
         if (!sec.searchCarro(placa)){
             return false;

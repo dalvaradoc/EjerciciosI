@@ -26,7 +26,10 @@ public class ProblemaParqueadero {
     private Seccion seccion3;
     
     public Clock reloj;
-
+    
+    /**
+     * Constructor que crea los objetos necesarios para la solucion del problema
+     */
     public ProblemaParqueadero() {
         
         reloj = Clock.systemDefaultZone();
@@ -72,6 +75,9 @@ public class ProblemaParqueadero {
         
     }    
     
+    /**
+     * Este metodo llama las funciones que solucionan el problema
+     */
     public void solucionarProblema (){
         
         for(int i = 0; i < 6; i++){

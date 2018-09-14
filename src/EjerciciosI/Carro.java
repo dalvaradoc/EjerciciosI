@@ -21,6 +21,15 @@ public class Carro extends becker.robots.Thing {
     
     private String placa;
     
+    /**
+     * Constructor el cual adiciona el identificador String llamado placa al
+     * constructor de la clase que extiende, además de asignar un color
+     * aleatorio al mismo.
+     * @param city
+     * @param i
+     * @param i1
+     * @param placa
+     */
     public Carro(City city, int i, int i1, String placa) {
         super(city, i, i1);
         this.placa = placa;
@@ -28,10 +37,18 @@ public class Carro extends becker.robots.Thing {
         super.getIcon().setColor(new Color((int)(Math.random() * 0x1000000)));
     }
 
+    /**
+     * Metodo que devuelve el String placa.
+     * @return
+     */
     public String getPlaca() {
         return placa;
     }
 
+    /**
+     * Metodo que asigna a placa un valor tipo String.
+     * @param placa
+     */
     public void setPlaca(String placa) {
         this.placa = placa;
         super.getIcon().setLabel(placa);

@@ -33,6 +33,13 @@ public class Seccion {
     private static int precioPorMinuto = 60;
     private static int ganancias = 0;
 
+    /**
+     * Constructor el cual asigna memoria al arreglo de carros y al arreglo
+     * de tiempos, inicializa la variable cantidad y la variable registro,
+     * y asigna el numero de la sección.
+     * seccion,
+     * @param number
+     */
     public Seccion(int number) {
         this.carros = new Carro[5];
         this.timeCarro = new long[5];
@@ -41,6 +48,12 @@ public class Seccion {
         registro = "";
     }
     
+    /**
+     * Metodo que busca si existe un carro con la placa especificada dentro de
+     * la seccion.
+     * @param placa
+     * @return
+     */
     public boolean searchCarro (String placa){
         for (int i = 0; i < cantidad; i++){
             if (carros[i].getPlaca().equals(placa)){
@@ -50,6 +63,13 @@ public class Seccion {
         return false;
     }
     
+    /**
+     * Metodo que agrega un carro en la seccion y agrega el tiempo de ingreso
+     * al arreglo de tiempos.
+     * @param carro
+     * @param tiempo0
+     * @return
+     */
     public boolean añadirCarro (Carro carro, long tiempo0){
         for (int i = 0; i < 5; i++){
             if (carros[i] == null){
@@ -62,6 +82,15 @@ public class Seccion {
         return false;
     }
     
+    /**
+     * Metodo que elimina el objeto carro de la seccion, añade la informacion
+     * del tiempo de ingreso y de salida al registro y elimina la informacion
+     * del arreglo de tiempos, además de llamar la funcion que aumenta las
+     * ganancias.
+     * @param carro
+     * @param tiempoF
+     * @return
+     */
     public boolean eliminarCarro(Carro carro, long tiempoF){
         for (int i = 0; i < 5; i++){
             if (carros[i] != null && carros[i] == carro){
@@ -98,30 +127,58 @@ public class Seccion {
         return false;
     }
 
+    /**
+     * Metodo que devuelve la cantidad de carros de la seccion.
+     * @return
+     */
     public int getCantidad() {
         return cantidad;
     }
 
+    /**
+     * Metodo que devuelve el numero de la seccion.
+     * @return
+     */
     public int getNumber() {
         return number;
     }
     
+    /**
+     * Metodo que devuelve el arreglo de carros que hay en la seccion.
+     * @return
+     */
     public Carro[] getCarros(){
         return carros;
     }
 
+    /**
+     * Metodo que devuelve el arreglo de tiempos de ingreso.
+     * @return
+     */
     public long[] getTimeCarro() {
         return timeCarro;
     }
 
+    /**
+     * Metodo que devuelve el registro de tiempos de ingreso y salida de los
+     * carros.
+     * @return
+     */
     public static String getRegistro() {
         return registro;
     }
 
+    /**
+     * Metodo que devuelve las ganancias.
+     * @return
+     */
     public static int getGanancias() {
         return ganancias;
     }
 
+    /**
+     * Metodo que imprime las placas de los carros que hay en la seccion.
+     */
     public void mostrarSeccion (){
         System.out.println("Seccion " + number);
         for (int i = 0; i < cantidad; i++){
@@ -129,6 +186,10 @@ public class Seccion {
         }
     }
     
+    /**
+     * Metodo que aumenta las ganancias sumandole el valor especificado.
+     * @param valor
+     */
     public void aumentarGanancias (int valor){
         ganancias += valor;
     }

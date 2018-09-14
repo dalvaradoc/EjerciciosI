@@ -12,17 +12,36 @@ import java.util.Collections;
 
 /**
  *
- * @author Alejandro
+ * Esta clase es una extensión de la clase Robot (becker.robots.Robot). Puede
+ * recorrer el exterior del area en sentido de las manecillas del reloj, guarda
+ * las intersecciones donde hay una pared y puede calcular los metros cuadrados
+ * del area.
+ * @author Alejandro Alvarado
+ * @since 11/09/2018
+ * @version 1.0
  */
 public class RobotMedidor extends becker.robots.Robot {
     
     private ArrayList<Posicion> posiciones;
     
+    /**
+     * Constructor que crea el robot e inicializa la lista posiciones.
+     * @param city
+     * @param i
+     * @param i1
+     * @param drctn
+     */
     public RobotMedidor(City city, int i, int i1, Direction drctn) {
         super(city, i, i1, drctn);
         posiciones = new ArrayList<Posicion>();
     }
     
+    /**
+     * Metodo que busca si existe una posicion "pos" en la lista "posL".
+     * @param posL
+     * @param pos
+     * @return
+     */
     public boolean buscarPosicion (ArrayList<Posicion> posL, Posicion pos){
         for (int i = 0; i < posL.size(); i++){
             if (posL.get(i).getX() == pos.getX() && posL.get(i).getY() == pos.getY()){
@@ -32,6 +51,10 @@ public class RobotMedidor extends becker.robots.Robot {
         return false;
     }
     
+    /**
+     * Metodo que mueve al robot por el exterior del area y asigna los valores
+     * a la lista de posiciones mientras se mueve.
+     */
     public void moverPorElArea (){
         boolean flag = true;
         while (flag){
@@ -69,30 +92,56 @@ public class RobotMedidor extends becker.robots.Robot {
         }
     }
     
+    /**
+     * Metodo que gira el robot hasta que su direccion sea la especificada.
+     * @param dir
+     */
     public void rotUntilDir (Direction dir){
         while (this.getDirection() != dir){
             this.rot(1);
         }
     }
 
+    /**
+     * Metodo que devuelve la lista de posiciones.
+     * @return
+     */
     public ArrayList<Posicion> getPosiciones() {
         return posiciones;
     }   
     
+    /**
+     * Metodo que imprime las posiciones.
+     */
     public void mostrarPosiciones (){
         for (int i = 0; i < posiciones.size(); i++){
             System.out.println("x: " + posiciones.get(i).getX() + " y: " + posiciones.get(i).getY() + "\n");
         }
     }
     
+    /**
+     * Metodo que devuelve la ultima posicion de la lista "pos".
+     * @param pos
+     * @return
+     */
     public int maximoX(ArrayList<Posicion> pos) {
         return pos.get(pos.size()-1).getX();
     }  
     
+    /**
+     * Metodo que devuelve la primera posicion de la lista "pos".
+     * @param pos
+     * @return
+     */
     public int minimoX(ArrayList<Posicion> pos) {
         return pos.get(0).getX();
     }
     
+    /**
+     * Metodo que organiza la lista "posL". La organiza de menor a mayor en el
+     * eje x, y luego en el eje y.
+     * @param posL
+     */
     public void sortPosiciones (ArrayList<Posicion> posL){
         for (int i = 0; i < posL.size()-1; i++){
             for (int j = i+1; j < posL.size();j++){
@@ -116,6 +165,10 @@ public class RobotMedidor extends becker.robots.Robot {
         }
     }
     
+    /**
+     * Metodo que calcula los metros cuadrados del area.
+     * @return
+     */
     public int calcularArea (){
         int area = 0;
         sortPosiciones(posiciones);

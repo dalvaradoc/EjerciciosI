@@ -12,8 +12,8 @@ import EjerciciosI.EjercicioKarel;
 public class Main {
     public static void main(String[] args) {
      
-//        ProblemaParqueadero pParq = new ProblemaParqueadero();
-//        pParq.solucionarProblema();
+        ProblemaParqueadero pParq = new ProblemaParqueadero();
+        pParq.solucionarProblema();
         
         ProblemaArea pArea = new ProblemaArea();
         pArea.solucionarProblema();

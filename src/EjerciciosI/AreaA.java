@@ -11,16 +11,30 @@ import becker.robots.Wall;
 
 /**
  *
- * @author Alejandro
+ * Esta clase crea las paredes de un area, puede crear 3 diferentes areas y se
+ * puede elegir cual area elegir.
+ * @author Alejandro Alvarado
+ * @since 11/09/2018
+ * @version 1.0
  */
 public class AreaA {
     private City ciudad;
 
+    /**
+     * Constructor que llama a la funcion crearArea.
+     * @param ciudad
+     * @param n
+     */
     public AreaA(City ciudad, int n) {
         this.ciudad = ciudad;
         crearArea(n);
     }
     
+    /**
+     * Este metodo es el que contiene la información para crear las areas, y se
+     * elige cual area crear dependiendo de el integer n que se le asigne.
+     * @param n
+     */
     public void crearArea(int n) {
         switch (n){
             case 0:
